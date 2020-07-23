@@ -1,0 +1,23 @@
+language: java
+
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - cd docker
+  - docker-compose up -d
+  - docker container ps -a
+  - cd ..
+
+addons:
+  sonarcloud:
+    organization: "ccathala"
+    token:
+      secure: "B/BUXgxtRXbFrAF5sejErMUUKQfYtLAY9vl5HEgUDg3DpPhEULxcWPhtiDm12q7xbOxP4smyhOuusxBYemStNWuL3ZKIII9fambQvSrdA1mAv6LsiRo/+WyxAJH5KgfKMgzpGQIgBWUbirORVj7G/F65Sg2qRVjkBLgekEoS5KDZ+cqGDQwEpmOMsM+98WNEnhObdBhOJs6/4NfDe5MDf+PNXr1CKPUcw3hFzTkYilyk2eHre5uQg7S85mGS6cp6omRE1+G5chJ8YhWKLPq2jdWisKRrZFMR2+oD8KHLI9IWwEBY4/iF8xUag97x3ayhGYUA423ufNB2vm47b6vXJLr/7yFi2pGc/r2RvvvTxq9kL/mEZ7apmcsivC4WWpU8X0RQoGjElJh8TZ78khKXuouRe6lciQvgTNfcS/xz1aJuIEn+eXJaQV0cep9KpA+ais6lg+x1TVuwIGLfv7/k0vX2AF9NqFH9FgyW4wBqzai4pbMs9Qy+rLllD5LbaP/q3+uBwbrdcVDkVgBAwHoi8oHHZOfRCheNIDXSS1ItY3FGMnvfV03hwkYJDvTtyHtSUSNcnqugP060AfecmHmGOFCIsgJK9y1QoJzrsLXn5Ya3zO8xzvKrP9MY5a5sKeBgsjIQP4ejOp28DdLfIWsRpv+vVg158gnBzNnbBppjns8="
+      
+    script:
+  # JaCoCo is used to have code coverage, "-Pcoverage" activates the maven profile in the pom.xml
+  - ls
+  - mvn clean verify sonar:sonar -Pcoverage -Dsonar.projectKey=ccathala_matchamate-session-api

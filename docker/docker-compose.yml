@@ -1,0 +1,16 @@
+version: '3'
+services:
+  database:
+    image: 'mongo'
+    ports:
+      - '127.0.0.1:27019:27017'
+    container_name: 'matchamate-session-api-mongo-container'
+    environment:
+      - MONGO_INITDB_DATABASE=matchamate_session_db
+      - MONGO_INITDB_ROOT_USERNAME=matchamate_admin
+      - MONGO_INITDB_ROOT_PASSWORD=azerty
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
+      - ./mongo-volume:/data/db
+      - ./matchamate_session_db_backup:/data/backup
+    
