@@ -1,4 +1,4 @@
-package com.ccathala.matchamatesessionapi.model;
+package com.ccathala.matchamatesessionapi.model.dto;
 
 import java.util.Date;
 import java.util.List;
@@ -6,8 +6,11 @@ import java.util.List;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.ccathala.matchamatesessionapi.model.Company;
+import com.ccathala.matchamatesessionapi.model.Participant;
+import com.ccathala.matchamatesessionapi.model.Time;
+
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -15,8 +18,7 @@ import lombok.Setter;
 /**
  * Session
  */
-@Document(collection = "sessions")
-public class Session {
+public class SessionDTO {
 
     @Id
     private @Getter @Setter String id;
